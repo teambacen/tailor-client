@@ -1,6 +1,6 @@
 <template>
     <div id="header">
-        <nav class="navbar navbar-fixed-top navbar-light bg-faded">
+        <nav class="navbar  navbar-light bg-faded">
         <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse"
             data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
             aria-expanded="false" aria-label="Toggle navigation"></button>
@@ -19,6 +19,9 @@
             </li>
             <li class="nav-item">
               <a href="" class="nav-link"> <router-link to="">Profile</router-link> </a>
+            </li>
+            <li class="nav-item" v-if="user.roles === 1">
+              <a href="" class="nav-link"> <router-link to="">Tailor</router-link> </a>
             </li>
             <li class="nav-item">
               <a href="" class="nav-link" @click="logout" >Sign Out</a>
@@ -60,3 +63,8 @@ export default {
   }
 }
 </script>
+<style>
+    .navbar{
+        border-radius:0px; 
+    }
+</style>

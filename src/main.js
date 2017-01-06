@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'
 import Login from './Login'
 import Home from './Home'
 import Indee from './Index'
+import Detail from './Detail'
 
 Vue.use(vueResource)
 Vue.use(VueRouter)
@@ -19,7 +20,8 @@ Vue.http.options.emulateJSON = true
 const routes = [
   { path: '', component: Indee },
   { path: '/signup', component: Home },
-  { path: '/signin', component: Login }
+  { path: '/signin', component: Login },
+  { path: '/detail', component: Detail }
 ]
 
 const router = new VueRouter({
