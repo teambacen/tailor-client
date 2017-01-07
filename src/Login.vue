@@ -1,4 +1,5 @@
 <template>
+    {{ check }}
     <div id="login" class="container bawah">
           <div class="row flex-items-xs-middle">
             <div class="col-md-4">
@@ -24,7 +25,6 @@
             <div class="col-md-4"></div>
           </div>
     </div>
-    {{ check }}
 </template>
 <script>
     export default{
@@ -51,7 +51,6 @@
           this.$http.post('http://tailor.app/oauth/token', formData).then((response) => {
             this.fail.error = ''
             window.localStorage.setItem('access_token', response.data.access_token)
-            return this.$router.go('')
           }, function (response) {
             if (response.data) {
               this.fail.error = response.data.message
@@ -63,7 +62,9 @@
       computed: {
         check: function () {
           if (window.localStorage.getItem('access_token')) {
-            return this.$router.push('/signup')
+            console.log('aa')
+          } else {
+            console.log('aa')
           }
         }
       }

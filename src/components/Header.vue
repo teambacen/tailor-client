@@ -18,7 +18,10 @@
               <a href="" class="nav-link"> Hi ! {{ user.name }} </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link"> <router-link to="">Profile</router-link> </a>
+                <a href="" class="nav-link"><router-link to='/'>Home</router-link></a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link"> <router-link to="/detail">Profile</router-link> </a>
             </li>
             <li class="nav-item" v-if="user.roles === 1">
               <a href="" class="nav-link"> <router-link to="">Tailor</router-link> </a>
