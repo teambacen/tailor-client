@@ -24,7 +24,7 @@
               <a href="" class="nav-link"> <router-link to="/detail">Profile</router-link> </a>
             </li>
             <li class="nav-item" v-if="user.roles === 1">
-              <a href="" class="nav-link"> <router-link to="">Tailor</router-link> </a>
+              <a href="" class="nav-link"> <router-link to="/tailor">Tailor</router-link> </a>
             </li>
             <li class="nav-item">
               <a href="" class="nav-link" @click="logout" >Sign Out</a>

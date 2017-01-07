@@ -7,7 +7,7 @@
           <div class="col-md-8 offset-md-2">
             <h1 class="tai-tit display-1">Tailor</h1>
             <div class="col-md-12 search-box">
-              <form>
+              <form @submit.prevent="search">
                 <div class="row">
                     <div class="col-xs-4">
                       <select class="form-control" name="" id="" v-model="state">
@@ -18,22 +18,33 @@
                     </div>
                     <div class="col-xs-6">
                       <select class="form-control" name="" id="" v-model="city">
-                          <option v-if="state === 'tgn'" v-for="tgn in terengganu" v-bind:value="tgn.value">
+                          <option v-if="state === 'terengganu'" v-for="tgn in terengganu" v-bind:value="tgn.value">
                             {{ tgn.text }}
                           </option>
-                          <option v-if="state === 'kltn'" v-for="kltn in kelantan" v-bind:value="kltn.value">
+                          <option v-if="state === 'kelantan'" v-for="kltn in kelantan" v-bind:value="kltn.value">
                             {{ kltn.text }}
                           </option>
-                          <option v-if="state === 'mlk'" v-for="mlk in melaka" v-bind:value="mlk.value" >
+                          <option v-if="state === 'melaka'" v-for="mlk in melaka" v-bind:value="mlk.value" >
                             {{ mlk.text }}
                           </option>
                         </select>
                     </div>
                     <div class="col-xs-2">
-                      <button type="button" name="" id="" class="btn btn-primary btn-block">Search</button>
+                      <button type="submit" name="" id="" class="btn btn-primary btn-block">Search</button>
                     </div>
                 </div>
               </form>
+            </div>
+            <div class="col-md-12 margin-sikit">
+              <div class="alert alert-warning" role="alert" v-show="error">
+                  <strong>{{ error }}</strong>
+              </div>
+              <div class="card" v-for="result in results">
+                <div class="card-block">
+                  <h4 class="card-title">{{ result.store_name }}</h4>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ result.state }}, {{ result.city }}</h6>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -49,13 +60,15 @@ export default{
   data: () => {
     return {
       user: [],
+      results: [],
+      error: false,
       state: '',
       city: '',
       options: [
         { text: 'Select State', value: '' },
-        { text: 'Terengganu', value: 'tgn' },
-        { text: 'Kelantan', value: 'kltn' },
-        { text: 'Melaka', value: 'mlk' }
+        { text: 'Terengganu', value: 'terengganu' },
+        { text: 'Kelantan', value: 'kelantan' },
+        { text: 'Melaka', value: 'melaka' }
       ],
       terengganu: [
         { text: 'Select City', value: '' },
@@ -82,6 +95,14 @@ export default{
     geti: function () {
       this.$http.get('http://tailor.app/api/user').then((response) => {
         this.user = response.body
+      })
+    },
+    search: function () {
+      this.error = ''
+      this.results = []
+      this.$http.get('http://tailor.app/api/tailor?q=' + this.state).then((response) => {
+        response.body.error ? this.error = response.body.error : this.results = response.body
+        console.log(response.body)
       })
     }
   }
@@ -110,5 +131,8 @@ export default{
   font-size:10em;
   padding-top: 300px;
   padding-left:35%; 
+}
+.margin-sikit{
+  margin-top: 20px;
 }
 </style>

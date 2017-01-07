@@ -5,7 +5,11 @@
         <div class="container box-white">
             <div class="row">
                 <div class="col-md-3">
-                    
+                   <div class="list-group">
+                       <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-id-card" aria-hidden="true"></i> Detail</a>
+                       <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-history" aria-hidden="true"></i> Booking</a>
+                       <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-key" aria-hidden="true"></i> Password</a>
+                   </div>
                 </div>
                 <div class="col-md-9 grey-line">
                     <h1 class="display-4">Your's Detail</h1>
@@ -47,6 +51,7 @@
                           <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </div>
@@ -113,6 +118,9 @@ export default{
     .box-white .form-control{
         border-bottom: #6C7A89 2px solid; 
         border-radius: 0px;
+    }
+    .box-white .list-group-item{
+        border: transparent 0px ;
     }
     .grey-line{
         border-left: #D2D7D3 2px solid; 

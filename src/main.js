@@ -7,6 +7,7 @@ import Login from './Login'
 import Home from './Home'
 import Indee from './Index'
 import Detail from './Detail'
+import Tailor from './Tailor'
 
 Vue.use(vueResource)
 Vue.use(VueRouter)
@@ -21,7 +22,8 @@ const routes = [
   { path: '', component: Indee },
   { path: '/signup', component: Home },
   { path: '/signin', component: Login },
-  { path: '/detail', component: Detail }
+  { path: '/detail', component: Detail },
+  { path: '/tailor', component: Tailor }
 ]
 
 const router = new VueRouter({
