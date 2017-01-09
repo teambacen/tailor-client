@@ -1,5 +1,5 @@
 <template>
-    {{ check }}
+        {{ check }}
     <div id="login" class="container bawah">
           <div class="row flex-items-xs-middle">
             <div class="col-md-4">
