@@ -31,7 +31,6 @@
             </li>
           </ul>
         </div>
-        {{ getUser }}
       </nav>
     </div>
 </template>
@@ -44,6 +43,11 @@ export default {
       user: []
     }
   },
+  mounted () {
+    this.$http.get('http://api.penjahit.my/api/user').then((response) => {
+      this.user = response.body
+    })
+  },
   computed: {
     check: function () {
       if (window.localStorage.getItem('access_token')) {
@@ -52,11 +56,6 @@ export default {
       } else {
         return false
       }
-    },
-    getUser: function () {
-      this.$http.get('http://tailor.app/api/user').then((response) => {
-        this.user = response.body
-      })
     }
   },
   methods: {

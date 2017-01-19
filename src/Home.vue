@@ -46,7 +46,7 @@ export default{
   methods: {
     register: function () {
       let formDaa = this.formDaa
-      this.$http.post('http://tailor.app/api/register', formDaa).then((response) => {
+      this.$http.post('http://api.penjahit.my/api/register', formDaa).then((response) => {
         this.formDaa = {
           name: '',
           email: '',

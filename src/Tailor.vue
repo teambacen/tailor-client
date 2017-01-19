@@ -85,14 +85,14 @@ export default {
   methods: {
     store: function () {
       let tailor = this.tailor
-      this.$http.post('http://tailor.app/api/tailor', tailor).then((response) => {
+      this.$http.post('http://api.penjahit.my/api/tailor', tailor).then((response) => {
         console.log(response.body)
       })
     }
   },
   computed: {
     checkTailor: function () {
-      this.$http.get('http://tailor.app/api/tailor/detail').then((response) => {
+      this.$http.get('http://api.penjahit.my/api/tailor/detail').then((response) => {
         if (response.body.data[0] === undefined) {
           console.log('no data')
         } else {

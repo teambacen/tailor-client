@@ -1,5 +1,4 @@
 <template>
-        {{ check }}
     <div id="login" class="container bawah">
           <div class="row flex-items-xs-middle">
             <div class="col-md-4">
@@ -22,7 +21,9 @@
                   </div>
               </form>
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              {{ check }}
+            </div>
           </div>
     </div>
 </template>
@@ -34,7 +35,7 @@
           formData: {
             grant_type: 'password',
             client_id: '2',
-            client_secret: 'glw2WS7NvqZkNLkH9VTHTbnPfrVO9S8AJuM5iupK',
+            client_secret: 'KwrJzaX97WNt5J2UTRVHMHOtLYUqV9y6siPj5QbN',
             username: '',
             password: '',
             scope: '*'
@@ -48,9 +49,10 @@
       methods: {
         login: function () {
           let formData = this.formData
-          this.$http.post('http://tailor.app/oauth/token', formData).then((response) => {
+          this.$http.post('http://api.penjahit.my/oauth/token', formData).then((response) => {
             this.fail.error = ''
             window.localStorage.setItem('access_token', response.data.access_token)
+            return this.$router.push({ name: 'home' })
           }, function (response) {
             if (response.data) {
               this.fail.error = response.data.message
@@ -63,6 +65,7 @@
         check: function () {
           if (window.localStorage.getItem('access_token')) {
             console.log('aa')
+            return this.$router.push({ name: 'home' })
           } else {
             console.log('aa')
           }

@@ -85,7 +85,7 @@ export default{
   methods: {
     storeDetail: function () {
       let detail = this.details
-      this.$http.post('http://tailor.app/api/user', detail).then((response) => {
+      this.$http.post('http://api.penjahit.my/api/user', detail).then((response) => {
         console.log(response)
       }, function (response) {
         console.log(response)
@@ -94,7 +94,7 @@ export default{
   },
   computed: {
     getdata: function () {
-      this.$http.get('http://tailor.app/api/user/detail').then((response) => {
+      this.$http.get('http://api.penjahit.my/api/user/detail').then((response) => {
         if (response.body.data[0] === undefined) {
           console.log('no data')
         } else {

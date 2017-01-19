@@ -41,7 +41,7 @@
               </div>
               <div class="card" v-for="result in results">
                 <div class="card-block">
-                  <h4 class="card-title">{{ result.store_name }}</h4>
+                  <h4 class="card-title"><router-link :to="{ name: 'info', params: { id: result.id } }">{{ result.store_name }}</router-link></h4>
                   <h6 class="card-subtitle mb-2 text-muted">{{ result.state }}, {{ result.city }}</h6>
                 </div>
               </div>
@@ -64,11 +64,23 @@ export default{
       error: false,
       state: '',
       city: '',
+      test: '',
       options: [
         { text: 'Select State', value: '' },
-        { text: 'Terengganu', value: 'terengganu' },
         { text: 'Kelantan', value: 'kelantan' },
-        { text: 'Melaka', value: 'melaka' }
+        { text: 'Terengganu', value: 'terengganu' },
+        { text: 'Pahang', value: 'pahang' },
+        { text: 'Johor', value: 'johor' },
+        { text: 'Melaka', value: 'melaka' },
+        { text: 'Negeri Sembilan', value: 'negerisembilan' },
+        { text: 'Selangor', value: 'selangor' },
+        { text: 'Wilayah Persekutuan', value: 'wilayah' },
+        { text: 'Perak', value: 'perak' },
+        { text: 'Pulau Pinang', value: 'pulaupinang' },
+        { text: 'Kedah', value: 'kedah' },
+        { text: 'Perlis', value: 'perlis' },
+        { text: 'Sabah', value: 'sabah' },
+        { text: 'Sarawak', value: 'sarawak' }
       ],
       terengganu: [
         { text: 'Select City', value: '' },
@@ -91,20 +103,25 @@ export default{
   components: {
     Heade
   },
+  mounted () {
+    this.test = 'ayam'
+    console.log(this.test)
+  },
   methods: {
     geti: function () {
-      this.$http.get('http://tailor.app/api/user').then((response) => {
+      this.$http.get('http://api.penjahit.my/api/user').then((response) => {
         this.user = response.body
       })
     },
     search: function () {
       this.error = ''
       this.results = []
-      this.$http.get('http://tailor.app/api/tailor?q=' + this.state).then((response) => {
+      this.$http.get('http://api.penjahit.my/api/tailor?q=' + this.state).then((response) => {
         response.body.error ? this.error = response.body.error : this.results = response.body
         console.log(response.body)
       })
     }
+
   }
 }
 </script>
