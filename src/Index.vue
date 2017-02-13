@@ -9,14 +9,14 @@
             <div class="col-md-12 search-box">
               <form @submit.prevent="search">
                 <div class="row">
-                    <div class="col-xs-4">
+                    <div class="col-sm-4">
                       <select class="form-control" name="" id="" v-model="state">
                           <option v-for="option in options" v-bind:value="option.value">
                             {{ option.text }}
                           </option>
                         </select>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-sm-6">
                       <select class="form-control" name="" id="" v-model="city">
                           <option v-if="state === 'terengganu'" v-for="tgn in terengganu" v-bind:value="tgn.value">
                             {{ tgn.text }}
@@ -29,7 +29,7 @@
                           </option>
                         </select>
                     </div>
-                    <div class="col-xs-2">
+                    <div class="col-sm-2">
                       <button type="submit" name="" id="" class="btn btn-primary btn-block">Search</button>
                     </div>
                 </div>
@@ -39,14 +39,13 @@
               <div class="alert alert-warning" role="alert" v-show="error">
                   <strong>{{ error }}</strong>
               </div>
-              <transition name="fade">
-              <div class="card" v-for="result in results">
+  
+              <div class="card mrt" v-for="result in results">
                 <div class="card-block">
                   <h4 class="card-title"><router-link :to="{ name: 'info', params: { id: result.id } }">{{ result.store_name }}</router-link></h4>
                   <h6 class="card-subtitle mb-2 text-muted">{{ result.state }}, {{ result.city }}</h6>
                 </div>
               </div>
-              </transition>
             </div>
           </div>
         </div>
@@ -111,7 +110,7 @@ export default{
   },
   methods: {
     geti: function () {
-      this.$http.get('http://api.penjahit.my/api/user').then((response) => {
+      this.$http.get('http://tailor.app/api/user').then((response) => {
         this.user = response.body
       })
     },
@@ -154,10 +153,20 @@ export default{
 .margin-sikit{
   margin-top: 20px;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
+.list-complete-item {
+  transition: all 1s;
+  display: inline-block;
+  margin-right: 10px;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-  opacity: 0
+.list-complete-enter, .list-complete-leave-to
+/* .list-complete-leave-active for <2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.list-complete-leave-active {
+  position: absolute;
+}
+.mrt{
+  margin-top:10px;
 }
 </style>

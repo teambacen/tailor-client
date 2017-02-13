@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="list-group">
-                       <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-id-card" aria-hidden="true"></i> Detail</a>
-                       <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-history" aria-hidden="true"></i> Booking</a>
+                       <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-id-card" aria-hidden="true"></i> <router-link to="/tailor">Detail</router-link></a>
+                       <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-history" aria-hidden="true"></i> <router-link to="/tailor/booking">Booking</router-link></a>
                        <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-key" aria-hidden="true"></i> Customer</a>
                    </div>
                 </div>
@@ -85,14 +85,14 @@ export default {
   methods: {
     store: function () {
       let tailor = this.tailor
-      this.$http.post('http://api.penjahit.my/api/tailor', tailor).then((response) => {
+      this.$http.post('http://tailor.app/api/tailor', tailor).then((response) => {
         console.log(response.body)
       })
     }
   },
   computed: {
     checkTailor: function () {
-      this.$http.get('http://api.penjahit.my/api/tailor/detail').then((response) => {
+      this.$http.get('http://tailor.app/api/tailor/detail').then((response) => {
         if (response.body.data[0] === undefined) {
           console.log('no data')
         } else {

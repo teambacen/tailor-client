@@ -35,7 +35,7 @@
           formData: {
             grant_type: 'password',
             client_id: '2',
-            client_secret: 'KwrJzaX97WNt5J2UTRVHMHOtLYUqV9y6siPj5QbN',
+            client_secret: 'glw2WS7NvqZkNLkH9VTHTbnPfrVO9S8AJuM5iupK',
             username: '',
             password: '',
             scope: '*'
@@ -49,7 +49,7 @@
       methods: {
         login: function () {
           let formData = this.formData
-          this.$http.post('http://api.penjahit.my/oauth/token', formData).then((response) => {
+          this.$http.post('http://tailor.app/oauth/token', formData).then((response) => {
             this.fail.error = ''
             window.localStorage.setItem('access_token', response.data.access_token)
             return this.$router.push({ name: 'home' })

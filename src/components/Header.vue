@@ -2,12 +2,13 @@
     <div id="header">
         <nav class="navbar  navbar-light bg-faded">
         <div class="container">
-          <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse"
-            data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <a href="" class="navbar-brand">Tailor</a>
-        <div class="collapse navbar-toggleable-md" id="collapsibleNavId">
-          <ul class="nav navbar-nav float-xs-right" v-show="!check">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          
+          <ul class="navbar-nav" v-show="!check">
             <li class="nav-item">
                 <a class="nav-link" href="#"><router-link to="/signin">Sign In</router-link></a>
             </li>
@@ -15,7 +16,7 @@
                  <a class="nav-link" href="#"><router-link to="/signup">Sign Up</router-link></a>
             </li>
           </ul>
-          <ul class="nav navbar-nav float-xs-right" v-show="check">
+          <ul class="navbar-nav" v-show="check">
             <li class="nav-item">
               <a href="" class="nav-link"> Hi ! {{ user.name }} </a>
             </li>
@@ -47,7 +48,7 @@ export default {
     }
   },
   mounted () {
-    this.$http.get('http://api.penjahit.my/api/user').then((response) => {
+    this.$http.get('http://tailor.app/api/user').then((response) => {
       this.user = response.body
     })
   },

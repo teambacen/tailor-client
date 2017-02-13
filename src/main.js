@@ -10,6 +10,8 @@ import Indee from './Index'
 import Detail from './Detail'
 import Tailor from './Tailor'
 import Tailorinfo from './Tailorinfo'
+import TBooking from './tailor/booking'
+import CBooking from './customer/booking'
 import Test from './Test'
 
 Vue.use(vueResource)
@@ -29,7 +31,9 @@ const routes = [
   { path: '/detail', component: Detail },
   { path: '/tailor', component: Tailor },
   { path: '/tailor/:id/info', name: 'info', component: Tailorinfo },
-  { path: '/test', component: Test }
+  { path: '/test', component: Test },
+  { path: '/tailor/booking', component: TBooking },
+  { path: '/user/booking', component: CBooking }
 ]
 
 const router = new VueRouter({
