@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row flex-items-md-center">
           <div class="col-md-8 offset-md-2">
-            <h1 class="tai-tit display-1">Tailor</h1>
+            <h1 class="tai-tit display-1"></h1>
             <div class="col-md-12 search-box">
               <form @submit.prevent="search">
                 <div class="row">
@@ -39,12 +39,14 @@
               <div class="alert alert-warning" role="alert" v-show="error">
                   <strong>{{ error }}</strong>
               </div>
+              <transition name="fade">
               <div class="card" v-for="result in results">
                 <div class="card-block">
                   <h4 class="card-title"><router-link :to="{ name: 'info', params: { id: result.id } }">{{ result.store_name }}</router-link></h4>
                   <h6 class="card-subtitle mb-2 text-muted">{{ result.state }}, {{ result.city }}</h6>
                 </div>
               </div>
+              </transition>
             </div>
           </div>
         </div>
@@ -116,7 +118,7 @@ export default{
     search: function () {
       this.error = ''
       this.results = []
-      this.$http.get('http://api.penjahit.my/api/tailor?q=' + this.state).then((response) => {
+      this.$http.get('http://tailor.app/api/tailor?q=' + this.state).then((response) => {
         response.body.error ? this.error = response.body.error : this.results = response.body
         console.log(response.body)
       })
@@ -151,5 +153,11 @@ export default{
 }
 .margin-sikit{
   margin-top: 20px;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
 }
 </style>
